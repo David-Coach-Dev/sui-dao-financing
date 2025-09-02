@@ -1,6 +1,6 @@
 # 📘 Día 1: Conceptos Básicos de Move
 
-> **Fecha:** 1 de Septiembre 2024  
+> **Fecha:** 1 de Septiembre 2025  
 > **Duración:** 2 horas  
 > **Objetivo:** Entender los fundamentos del lenguaje Move aplicados a nuestra DAO
 

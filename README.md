@@ -130,7 +130,7 @@ Distribuido bajo la Licencia MIT. Ver `LICENSE` para más información.
 ## 👨‍💻 Autor
 
 **Tu Nombre**
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
+- GitHub: [@David-Coach-Dev](https://github.com/David-Coach-Dev)
 - Discord: tu-usuario#1234
 - Proyecto: [Sui Developer Program](https://sui.io/developers)
 

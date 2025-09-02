@@ -93,13 +93,46 @@ Documentar todo el proceso de aprendizaje del lenguaje Move y el desarrollo en S
 
 ## 📊 Progreso General
 
+### Estado Actual del Desarrollo
+
+| Componente | Progreso | Barra Visual |
+|------------|----------|--------------|
+| Fundamentos de Move | 80% | `████████░░` |
+| Arquitectura DAO | 60% | `██████░░░░` |
+| Implementación | 20% | `██░░░░░░░░` |
+| Testing | 0% | `░░░░░░░░░░` |
+| Documentación | 40% | `████░░░░░░` |
+
+### Gráfico de Progreso
+
 ```
 Fundamentos de Move    [████████░░] 80%
 Arquitectura DAO       [██████░░░░] 60%  
 Implementación         [██░░░░░░░░] 20%
-Testing               [░░░░░░░░░░] 0%
-Documentación         [████░░░░░░] 40%
+Testing                [░░░░░░░░░░] 0%
+Documentación          [████░░░░░░] 40%
 ```
+
+### Resumen por Estado
+
+#### ✅ En Buen Progreso (60%+)
+- **Fundamentos de Move** - 80% completado
+- **Arquitectura DAO** - 60% completado
+
+#### 🟡 En Desarrollo (20-59%)
+- **Documentación** - 40% completado
+- **Implementación** - 20% completado
+
+#### 🔴 Pendiente (0-19%)
+- **Testing** - 0% completado
+
+### Progreso General: 40%
+
+```
+Progreso Total: [████░░░░░░] 40%
+```
+
+*Calculado como promedio de todos los componentes*
 
 ## 🎯 Objetivos de Aprendizaje
 
@@ -115,6 +148,6 @@ Documentación         [████░░░░░░] 40%
 
 ---
 
-**📝 Última actualización:** 1 de Septiembre 2024  
-**👨‍💻 Por:** [Tu nombre]  
+**📝 Última actualización:** 1 de Septiembre 2025  
+**👨‍💻 Por:** [@David-Coach-Dev](https://github.com/David-Coach-Dev)   
 **📧 Dudas:** Preguntar en Discord Sui Latam Devs
