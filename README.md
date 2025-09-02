@@ -33,7 +33,7 @@ Esta DAO permite a una comunidad decidir democráticamente qué proyectos financ
 
 ## 📚 Documentación
 
-- [📖 **Notas de Aprendizaje**](./learning-notes/README.MD) - Todo el proceso de estudio de Move y Sui
+- [📖 **Notas de Aprendizaje**](./learning-notes/README.md) - Todo el proceso de estudio de Move y Sui
 - [📋 **Documentación Técnica**](./docs/) - Especificaciones y guías del proyecto
 - [💡 **Ejemplos de Uso**](./examples/) - Cómo interactuar con la DAO
 

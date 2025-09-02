@@ -148,6 +148,6 @@ Progreso Total: [████░░░░░░] 40%
 
 ---
 
-**📝 Última actualización:** 1 de Septiembre 2025  
+**📝 Última actualización:** 1 de Septiembre **2025**  
 **👨‍💻 Por:** [@David-Coach-Dev](https://github.com/David-Coach-Dev)   
 **📧 Dudas:** Preguntar en Discord Sui Latam Devs
