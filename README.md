@@ -58,7 +58,7 @@ Esta DAO permite a una comunidad decidir democráticamente qué proyectos financ
         - Owner
     }
     
-    Proposal --> DAO_Object : belongs to
+    Proposal --> DAO_Object
 ```
 
 ## 🎯 Funcionalidades Principales

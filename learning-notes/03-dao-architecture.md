@@ -52,7 +52,59 @@
     └─────────────────────────────────────────────────────────────┘
 ```
 
----
+#### 📚 NUESTRA DAO
+
+```mermaid
+classDiagram
+    class DAO {
+        - Treasury
+        - MinPower
+        - Counter
+    }
+
+    class Proposal {
+        - Amount
+        - Deadline
+        - Status
+    }
+
+    class Vote {
+        - Support
+        - Power
+        - Timestamp
+    }
+    class GovernToken {
+        - Power
+        - DAO_ID
+    }
+
+    class Events {
+        - ProposalCreated
+        - VoteCast
+        - Executed
+    }
+
+    DAO <-- Proposal
+    Proposal <-- Vote
+    DAO <-- GovernToken
+    Proposal <-- Events
+ 
+```
+ 
+#### 👥 USUARIOS
+
+```mermaid
+flowchart LR
+    subgraph USUARIOS
+        Creator["👤 Creator</br>└─ Creates DAO"]
+        TokenHolder["👤 Token Holder
+        └─ Votes"]
+        Proposer["👤 Proposer
+        └─ Proposes"]
+        Voter["👤 Voter
+        └─ Votes"]
+    end
+```
 
 ## 🔄 2. FLUJOS COMPLETOS DE INTERACCIÓN
 

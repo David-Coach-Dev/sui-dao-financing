@@ -1,4 +1,4 @@
-# 💻 Día 4-5: Log de Implementación
+# 💻 Día 5 - 6: Log de Implementación
 
 > **Fechas:** 4-5 de Septiembre 2024  
 > **Duración:** 4+ horas  
@@ -17,7 +17,7 @@
 
 ## 📅 LOG DIARIO
 
-### 🌅 **Día 4 - Sesión Mañana (2h)**
+### 🌅 **Día 5 - Sesión Mañana (2h)**
 
 #### ✅ **09:00-10:30: Setup del Proyecto**
 
@@ -108,7 +108,7 @@ module dao_financing::dao {
 
 ---
 
-### 🌞 **Día 4 - Sesión Tarde (2h)**
+### 🌞 **Día 5 - Sesión Tarde (2h)**
 
 #### ✅ **15:00-16:30: Funciones de Creación**
 
@@ -206,7 +206,7 @@ public fun fund_dao(dao: &mut DAO, payment: Coin<SUI>) {
 
 ---
 
-### 🌅 **Día 5 - Sesión Mañana (2.5h)**
+### 🌅 **Día 6 - Sesión Mañana (2.5h)**
 
 #### ✅ **09:00-10:00: Sistema de Votación**
 
@@ -285,7 +285,7 @@ public fun execute_proposal(
 
 ---
 
-### 🌞 **Día 5 - Sesión Tarde (2h)**
+### 🌞 **Día 6 - Sesión Tarde (2h)**
 
 #### ✅ **15:00-16:00: Funciones de Consulta**
 

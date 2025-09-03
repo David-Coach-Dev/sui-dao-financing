@@ -517,7 +517,7 @@ public fun create_proposal(
 
 ---
 
-**📝 Mantenido por:** [Tu nombre]  
+**📝 Mantenido por:** [@David-Coach-Dev](https://github.com/David-Coach-Dev)
 **📅 Última actualización:** Septiembre 2024  
 **🔄 Frecuencia de actualización:** Semanal durante el programa  
 

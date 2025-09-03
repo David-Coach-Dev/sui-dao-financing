@@ -16,8 +16,7 @@ Documentar todo el proceso de aprendizaje del lenguaje Move y el desarrollo en S
 | 1 | 2 Sept | Conceptos básicos de Move | [01-move-concepts.md](01-move-concepts.md) | 🔄 |
 | 2 | 3 Sept | Objetos en Sui | [02-sui-objects.md](02-sui-objects.md) | ⏳ |
 | 3 | 4 Sept | Arquitectura DAO | [03-dao-architecture.md](03-dao-architecture.md) | ⏳ |
-| 4 | 5 Sept | Estructuras y funciones | [04-structures-functions.md](04-structures-functions.md) | ⏳ |
-| 5 | 6 Sept | Log de Implementación | [05-implementation-log.md](05-implementation-log.md) | ⏳ |
+| 4 | 5 Sept | Estructuras y funciones | [04-structures-functions.md](04-structures-functions.md) | ✅ |
 
 ### Semana 2: Implementación (8-9 Septiembre 2024)
 
@@ -94,46 +93,13 @@ Documentar todo el proceso de aprendizaje del lenguaje Move y el desarrollo en S
 
 ## 📊 Progreso General
 
-### Estado Actual del Desarrollo
-
-| Componente | Progreso | Barra Visual |
-|------------|----------|--------------|
-| Fundamentos de Move | 80% | `████████░░` |
-| Arquitectura DAO | 60% | `██████░░░░` |
-| Implementación | 20% | `██░░░░░░░░` |
-| Testing | 0% | `░░░░░░░░░░` |
-| Documentación | 40% | `████░░░░░░` |
-
-### Gráfico de Progreso
-
 ```
 Fundamentos de Move    [████████░░] 80%
 Arquitectura DAO       [██████░░░░] 60%  
 Implementación         [██░░░░░░░░] 20%
-Testing                [░░░░░░░░░░] 0%
-Documentación          [████░░░░░░] 40%
+Testing               [░░░░░░░░░░] 0%
+Documentación         [████░░░░░░] 40%
 ```
-
-### Resumen por Estado
-
-#### ✅ En Buen Progreso (60%+)
-- **Fundamentos de Move** - 80% completado
-- **Arquitectura DAO** - 60% completado
-
-#### 🟡 En Desarrollo (20-59%)
-- **Documentación** - 40% completado
-- **Implementación** - 20% completado
-
-#### 🔴 Pendiente (0-19%)
-- **Testing** - 0% completado
-
-### Progreso General: 40%
-
-```
-Progreso Total: [████░░░░░░] 40%
-```
-
-*Calculado como promedio de todos los componentes*
 
 ## 🎯 Objetivos de Aprendizaje
 
@@ -149,6 +115,6 @@ Progreso Total: [████░░░░░░] 40%
 
 ---
 
-**📝 Última actualización:** 1 de Septiembre **2025**  
-**👨‍💻 Por:** [@David-Coach-Dev](https://github.com/David-Coach-Dev)   
+**📝 Última actualización:** 1 de Septiembre 2024  
+**👨‍💻 Por:** [Tu nombre]  
 **📧 Dudas:** Preguntar en Discord Sui Latam Devs
