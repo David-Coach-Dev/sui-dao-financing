@@ -1,0 +1,53 @@
+# Build outputs
+build/
+*.mv
+
+# Sui CLI artifacts
+.sui/
+
+# Build artifacts
+build/
+*.lock
+
+# Dependencies cache
+.move
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files (generated automatically)
+*-old.md
+*-new.md
+*-updated.md
+.backup-*/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Package lock files
+package-lock.json
+yarn.lock
+
+# Node modules (if using TypeScript SDK)
+node_modules/
+
+# Temporary files
+*.tmp
+*.temp

@@ -2,20 +2,9 @@
 name = "dao_financing"
 version = "1.0.0"
 edition = "2024.beta"
-description = "Decentralized Autonomous Organization for project financing on Sui Network"
-authors = ["Tu Nombre <tu@email.com>"]
-license = "MIT"
-repository = "https://github.com/tu-usuario/sui-dao-financing"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/mainnet" }
 
 [addresses]
-dao_financing = "0x0"
-
-# Development dependencies for testing
-[dev-dependencies]
-
-# Additional configuration
-[dev-addresses]
 dao_financing = "0x0"

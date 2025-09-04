@@ -6,6 +6,20 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# Build artifacts and Move specific
+contracts/build/
+contracts/*.lock
+contracts/Move.lock
+
+# Backup and temporary files
+.backup/
+*-old.md
+*-new.md
+*-updated.md
+*.backup
+*.tmp
+*.bak
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -141,3 +155,7 @@ vite.config.ts.timestamp-*
 # siu
 **/build
 **/Move.lock
+
+# folder
+
+.backup

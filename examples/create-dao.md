@@ -1,501 +1,363 @@
-# 🏛️ Crear Nueva DAO - Ejemplo Completo
+# 🏛️ Crear Nueva DAO - Tutorial Completo
 
-> **Guía paso a paso para crear tu primera DAO de financiamiento**
+> **Guía paso a paso para crear tu primera DAO de financiamiento en Sui Network**
 
 ## 🎯 **¿Qué vamos a hacer?**
 
-En este ejemplo aprenderás a:
+En este tutorial aprenderás a:
 1. ✅ Crear una nueva DAO desde cero
-2. ✅ Configurar parámetros iniciales
-3. ✅ Verificar que la DAO fue creada correctamente
-4. ✅ Financiar la tesorería inicial
-5. ✅ Crear tokens de gobernanza para los miembros
+2. ✅ Verificar que la DAO fue creada correctamente  
+3. ✅ Financiar la tesorería de la DAO
+4. ✅ Crear tokens de gobernanza para votar
+5. ✅ Consultar información de la DAO
 
 **⏱️ Tiempo estimado:** 10-15 minutos  
-**💰 Costo aproximado:** ~0.02 SUI en gas
+**💰 Costo aproximado:** ~0.05 SUI en gas fees
 
 ---
 
 ## 🔧 **Preparación**
 
-### **Verificar Prerequisites**
+### **1. Verificar Prerequisites**
 ```bash
-# 1. Verificar Sui CLI
+# Verificar Sui CLI instalado
 sui --version
-# Expected: sui 1.X.X-...
+# Esperado: sui 1.x.x-xxxxx
 
-# 2. Verificar network (recomendamos testnet para este ejemplo)
+# Verificar red activa (usar testnet para práctica)
 sui client active-env
-# Expected: testnet
+# Esperado: testnet
 
-# 3. Verificar balance
+# Verificar balance suficiente
 sui client balance
-# Expected: > 100000000 MIST (0.1 SUI)
+# Esperado: > 100000000 MIST (0.1 SUI)
 
-# 4. Verificar package ID
-echo $PACKAGE_ID
-# Si está vacío, usar nuestro package deployado:
-export PACKAGE_ID="0x..." # Package ID del deployment
+# Ver tu address actual
+sui client active-address
 ```
 
-### **Variables de Ejemplo**
+### **2. Configurar Variables del Tutorial**
 ```bash
-# Configuración para nuestro ejemplo
+# Package ID del contrato DAO (cuando esté deployado)
+export PACKAGE_ID="0x..." # Reemplazar con el Package ID real
+
+# Configuración de nuestra DAO de ejemplo
 export DAO_NAME="Mi Primera DAO"
 export MIN_VOTING_POWER=100
-export INITIAL_FUNDING=1000000000  # 1 SUI en MIST
+export INITIAL_FUNDING=2000000000  # 2 SUI en unidades MIST
+export YOUR_ADDRESS=$(sui client active-address)
 ```
 
 ---
 
-## 🚀 **Paso 1: Crear la DAO**
+## 🏗️ **Paso 1: Crear la DAO**
 
-### **Ejecutar el Comando**
+### **📝 Comando para Crear DAO**
 ```bash
 sui client call \
   --package $PACKAGE_ID \
   --module dao \
   --function create_dao \
   --args "$DAO_NAME" $MIN_VOTING_POWER \
-  --gas-budget 30000000
-```
-
-### **Output Esperado**
-```
-Transaction Digest: A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6...
-
-Created Objects:
-├── ID: 0xdao123456789abcdef... , Owner: Shared
-└── ID: 0xcap987654321fedcba... , Owner: Account Address ( 0xtu_address... )
-
-Mutated Objects:
-├── ID: 0xgas1234... , Owner: Account Address ( 0xtu_address... )
-
-Gas Object:
-├── ID: 0xgas1234... , Owner: Account Address ( 0xtu_address... )
-├── Version: 42
-├── Digest: 7x8y9z...
-
-Gas Used: 1,847,200
-
-Status: Success
-```
-
-### **Guardar el DAO ID**
-```bash
-# Del output anterior, copiar el ID del objeto Shared
-export DAO_ID="0xdao123456789abcdef..."
-
-echo "✅ DAO creada con ID: $DAO_ID"
-```
-
----
-
-## 🔍 **Paso 2: Verificar la Creación**
-
-### **Consultar el Objeto DAO**
-```bash
-sui client object $DAO_ID
-```
-
-### **Output Esperado**
-```json
-{
-  "objectId": "0xdao123456789abcdef...",
-  "version": "1",
-  "digest": "...",
-  "type": "0xpackage123...::dao::DAO",
-  "owner": {
-    "Shared": {
-      "initial_shared_version": 1
-    }
-  },
-  "content": {
-    "dataType": "moveObject",
-    "type": "0xpackage123...::dao::DAO",
-    "fields": {
-      "active": true,
-      "id": {
-        "id": "0xdao123456789abcdef..."
-      },
-      "min_voting_power": "100",
-      "name": "Mi Primera DAO",
-      "proposal_count": "0",
-      "treasury": {
-        "type": "0x2::balance::Balance<0x2::sui::SUI>",
-        "fields": {
-          "value": "0"
-        }
-      }
-    }
-  }
-}
-```
-
-### **Verificar los Campos**
-```bash
-# Extraer información importante
-echo "📛 Nombre: Mi Primera DAO"
-echo "💰 Treasury: 0 SUI (necesita funding)"
-echo "📊 Propuestas: 0"
-echo "⚡ Min Voting Power: 100"
-echo "🟢 Activa: true"
-```
-
----
-
-## 💰 **Paso 3: Financiar la DAO**
-
-### **Crear Coin para Financiamiento**
-```bash
-# Crear un coin de 1 SUI para financiar la DAO
-sui client pay \
-  --input-amounts $INITIAL_FUNDING \
-  --recipients $(sui client active-address) \
   --gas-budget 10000000
 ```
 
-### **Output del Pay**
-```
-Transaction Digest: X1Y2Z3A4B5C6D7E8F9G0H1I2J3K4L5M6...
-
-Created Objects:
-├── ID: 0xcoin123456... , Owner: Account Address ( 0xtu_address... )
-
-Gas Used: 1,234,567
-Status: Success
-```
-
-### **Financiar la DAO**
+### **📊 Output Esperado**
 ```bash
-# Usar el coin creado para financiar la DAO
-export FUNDING_COIN="0xcoin123456..."
+╭──────────────────────────────────────────────────────────────────────────────────────╮
+│ Transaction Effects                                                                  │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ Digest: HyQoKhaoL5TQ7xMKnSGEH3aBFbDHQ5Nf9nKYZ8mJrXzv                             │
+│ Status: Success                                                                      │
+│ Executed Epoch: 120                                                                 │
+│ Gas Used: 2500000                                                                   │
+│                                                                                      │
+│ Created Objects                                                                      │
+│  ┌──                                                                                │
+│  │ ObjectID: 0xabc123...def789                                                     │
+│  │ Sender: 0x123...abc                                                             │
+│  │ Owner: Shared                                                                    │
+│  │ ObjectType: 0x...::dao::DAO                                                     │
+│  │ Version: 1                                                                       │
+│  │ Digest: xyz789...                                                               │
+│  └──                                                                                │
+│                                                                                      │
+│ Events                                                                               │
+│  ┌──                                                                                │
+│  │ PackageID: 0x...                                                                │
+│  │ Transaction Module: dao                                                          │
+│  │ Sender: 0x123...abc                                                             │
+│  │ EventType: 0x...::dao::DAOCreated                                               │
+│  │ ParsedJSON:                                                                      │
+│  │   ┌─────────────────────────────────────────────────────────────────────────   │
+│  │   │ {                                                                           │
+│  │   │   "creator": "0x123...abc",                                                 │
+│  │   │   "dao_id": "0xabc123...def789",                                            │
+│  │   │   "min_voting_power": "100",                                                │
+│  │   │   "name": "Mi Primera DAO"                                                  │
+│  │   │ }                                                                           │
+│  │   └─────────────────────────────────────────────────────────────────────────   │
+│  └──                                                                                │
+╰──────────────────────────────────────────────────────────────────────────────────────╯
+```
 
+### **🔍 ¿Qué pasó aquí?**
+1. **Se creó un objeto DAO compartido** que cualquiera puede ver y usar
+2. **Se emitió un evento DAOCreated** con la información de la nueva DAO
+3. **El objeto tiene Owner: Shared** lo que significa que es accesible globalmente
+4. **Se generó un ObjectID único** que usaremos para referenciar esta DAO
+
+### **💾 Guardar Object ID**
+```bash
+# IMPORTANTE: Guardar el Object ID de la DAO creada
+export DAO_ID="0xabc123...def789"  # Reemplazar con el ID real del output
+echo "DAO creada con ID: $DAO_ID"
+```
+
+---
+
+## 💰 **Paso 2: Financiar la DAO**
+
+### **📝 Comando para Añadir Fondos**
+```bash
+# Crear una moneda SUI para financiar la DAO
 sui client call \
   --package $PACKAGE_ID \
   --module dao \
   --function fund_dao \
-  --args $DAO_ID $FUNDING_COIN \
-  --gas-budget 20000000
+  --args $DAO_ID \
+  --type-args 0x2::sui::SUI \
+  --gas-budget 10000000 \
+  --gas $INITIAL_FUNDING
 ```
 
-### **Verificar Treasury Actualizada**
-```bash
-sui client object $DAO_ID --json | jq '.content.fields.treasury.fields.value'
-# Expected: "1000000000"
+### **🔍 Explicación del Comando**
+- **`--args $DAO_ID`**: Referencia a nuestra DAO
+- **`--type-args 0x2::sui::SUI`**: Especifica que usamos monedas SUI
+- **`--gas $INITIAL_FUNDING`**: Usa SUI del gas para financiar la DAO
 
-echo "✅ DAO financiada con 1 SUI"
+### **📊 Output Esperado**
+```bash
+╭──────────────────────────────────────────────────────────────────────────────────────╮
+│ Transaction Effects                                                                  │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│ Status: Success                                                                      │
+│ Gas Used: 1500000                                                                   │
+│                                                                                      │
+│ Mutated Objects                                                                      │
+│  ┌──                                                                                │
+│  │ ObjectID: 0xabc123...def789                                                     │
+│  │ Sender: 0x123...abc                                                             │
+│  │ Owner: Shared                                                                    │
+│  │ ObjectType: 0x...::dao::DAO                                                     │
+│  │ Version: 2                                                                       │
+│  └──                                                                                │
+╰──────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 ---
 
-## 🎫 **Paso 4: Crear Tokens de Gobernanza**
+## 🎫 **Paso 3: Crear Tokens de Gobernanza**
 
-### **Mint Token para Ti (Fundador)**
+### **📝 Comando para Crear Token**
 ```bash
+# Crear token de gobernanza para ti mismo
 sui client call \
   --package $PACKAGE_ID \
   --module dao \
   --function mint_governance_token \
-  --args $DAO_ID $(sui client active-address) 1000 \
-  --gas-budget 20000000
+  --args $DAO_ID $YOUR_ADDRESS 1000 \
+  --gas-budget 10000000
 ```
 
-### **Mint Tokens para Miembros Adicionales**
-```bash
-# Ejemplo: crear tokens para otros miembros
-export MEMBER1="0x1234567890abcdef..."  # Address del miembro 1
-export MEMBER2="0xfedcba0987654321..."  # Address del miembro 2
+### **🔍 Explicación del Comando**
+- **`$DAO_ID`**: ID de nuestra DAO
+- **`$YOUR_ADDRESS`**: Tu address recibirá el token
+- **`1000`**: Poder de voto del token (puedes ajustar este valor)
 
-# Token para miembro 1 (500 poder de voto)
+### **📊 Output Esperado**
+```bash
+╭──────────────────────────────────────────────────────────────────────────────────────╮
+│ Created Objects                                                                      │
+│  ┌──                                                                                │
+│  │ ObjectID: 0xtoken123...abc789                                                   │
+│  │ Sender: 0x123...abc                                                             │
+│  │ Owner: Account Address ( 0x123...abc )                                          │
+│  │ ObjectType: 0x...::dao::GovernanceToken                                         │
+│  │ Version: 1                                                                       │
+│  └──                                                                                │
+╰──────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+### **💾 Guardar Token ID**
+```bash
+export TOKEN_ID="0xtoken123...abc789"  # Reemplazar con el ID real
+echo "Token de gobernanza creado: $TOKEN_ID"
+```
+
+---
+
+## 🔍 **Paso 4: Verificar la DAO Creada**
+
+### **📝 Consultar Información de la DAO**
+```bash
+# Ver información básica de la DAO
+sui client call \
+  --package $PACKAGE_ID \
+  --module dao \
+  --function get_dao_info \
+  --args $DAO_ID
+```
+
+### **📝 Ver Objetos en tu Wallet**
+```bash
+# Ver todos tus objetos (incluirá el token de gobernanza)
+sui client objects
+
+# Ver específicamente tokens de gobernanza
+sui client objects --filter StructType:$PACKAGE_ID::dao::GovernanceToken
+```
+
+### **📝 Consultar Información del Token**
+```bash
+# Ver detalles del token de gobernanza
+sui client call \
+  --package $PACKAGE_ID \
+  --module dao \
+  --function get_token_info \
+  --args $TOKEN_ID
+```
+
+---
+
+## ✅ **Verificar que Todo Funciona**
+
+### **🎯 Checklist de Verificación**
+
+1. **✅ DAO Creada**
+   ```bash
+   # La DAO debe existir y ser consultable
+   sui client object $DAO_ID
+   ```
+
+2. **✅ DAO Financiada**
+   ```bash
+   # El balance de la DAO debe mostrar los fondos
+   # (esto se verifica con get_dao_info)
+   ```
+
+3. **✅ Token Creado**
+   ```bash
+   # Debes tener un token de gobernanza en tu wallet
+   sui client objects | grep GovernanceToken
+   ```
+
+4. **✅ Token Configurado**
+   ```bash
+   # El token debe estar asociado a tu DAO
+   # (verificar con get_token_info)
+   ```
+
+---
+
+## 🎉 **¡Felicitaciones! Tu DAO está Lista**
+
+### **📋 Lo que tienes ahora:**
+- ✅ **Una DAO funcional** con nombre "Mi Primera DAO"
+- ✅ **Tesorería financiada** con 2 SUI
+- ✅ **Token de gobernanza** con 1000 puntos de votación
+- ✅ **Configuración mínima** de 100 puntos para votar
+
+### **🚀 Próximos Pasos:**
+1. **📝 Crear una propuesta** - Ve a [`submit-proposal.md`](submit-proposal.md)
+2. **🗳️ Votar en propuestas** - Sigue el tutorial de votación
+3. **👥 Invitar miembros** - Crea más tokens de gobernanza para otros
+4. **💰 Financiar más** - Añadir más fondos cuando sea necesario
+
+---
+
+## 🛠️ **Comandos de Utilidad**
+
+### **📊 Ver Estado de la DAO**
+```bash
+# Estado completo
+sui client object $DAO_ID --json
+
+# Solo información básica
+sui client call \
+  --package $PACKAGE_ID \
+  --module dao \
+  --function get_dao_info \
+  --args $DAO_ID
+```
+
+### **🎫 Gestionar Tokens**
+```bash
+# Ver todos tus tokens
+sui client objects --filter StructType:$PACKAGE_ID::dao::GovernanceToken
+
+# Crear token para otro usuario
 sui client call \
   --package $PACKAGE_ID \
   --module dao \
   --function mint_governance_token \
-  --args $DAO_ID $MEMBER1 500 \
-  --gas-budget 20000000
+  --args $DAO_ID 0x[ADDRESS_DEL_USUARIO] 500 \
+  --gas-budget 10000000
+```
 
-# Token para miembro 2 (300 poder de voto)
+### **💰 Añadir Más Fondos**
+```bash
+# Financiar con más SUI
 sui client call \
   --package $PACKAGE_ID \
   --module dao \
-  --function mint_governance_token \
-  --args $DAO_ID $MEMBER2 300 \
-  --gas-budget 20000000
-```
-
-### **Verificar Tokens Creados**
-```bash
-# Ver tus tokens de gobernanza
-sui client objects $(sui client active-address) \
-  --filter StructType=$PACKAGE_ID::dao::GovernanceToken
+  --function fund_dao \
+  --args $DAO_ID \
+  --type-args 0x2::sui::SUI \
+  --gas-budget 10000000 \
+  --gas 1000000000  # 1 SUI adicional
 ```
 
 ---
 
-## 🔍 **Paso 5: Verificación Final**
+## ⚠️ **Troubleshooting**
 
-### **Dashboard de la DAO**
+### **❌ "Insufficient gas"**
 ```bash
-echo "🏛️ === RESUMEN DE TU DAO ==="
-echo "📛 Nombre: $DAO_NAME"
-echo "🆔 ID: $DAO_ID"
-echo ""
-
-# Treasury balance
-TREASURY_BALANCE=$(sui client object $DAO_ID --json | jq -r '.content.fields.treasury.fields.value')
-TREASURY_SUI=$(echo "scale=4; $TREASURY_BALANCE / 1000000000" | bc -l)
-echo "💰 Treasury: $TREASURY_SUI SUI"
-
-# Proposal count
-PROPOSAL_COUNT=$(sui client object $DAO_ID --json | jq -r '.content.fields.proposal_count')
-echo "📊 Propuestas: $PROPOSAL_COUNT"
-
-# Status
-ACTIVE=$(sui client object $DAO_ID --json | jq -r '.content.fields.active')
-echo "🟢 Estado: $ACTIVE"
-
-echo ""
-echo "✅ ¡DAO creada exitosamente!"
+# Solución: Aumentar gas budget
+--gas-budget 20000000  # Doblar el gas budget
 ```
 
-### **Link al Explorer**
+### **❌ "Object not found"**
 ```bash
-# Ver en el explorer de Sui
-echo "🔍 Ver en explorer:"
-if [ "$(sui client active-env)" == "mainnet" ]; then
-    echo "https://suivision.xyz/object/$DAO_ID"
-else
-    echo "https://testnet.suivision.xyz/object/$DAO_ID"
-fi
-```
-
----
-
-## 🎯 **¿Qué acabas de lograr?**
-
-### ✅ **Creaciones Exitosas**
-1. **DAO Shared Object** - Accessible por toda la comunidad
-2. **Treasury Financiada** - 1 SUI disponible para propuestas
-3. **Governance Tokens** - Tokens distribuidos a miembros clave
-4. **Estructura Democrática** - Lista para recibir propuestas
-
-### 📊 **Distribución de Poder**
-```
-Total Voting Power: 1,800
-├── Tu address: 1,000 (55.6%)
-├── Miembro 1:    500 (27.8%)  
-└── Miembro 2:    300 (16.7%)
-```
-
----
-
-## 🚀 **Próximos Pasos**
-
-### **¿Qué puedes hacer ahora?**
-
-1. **Crear Primera Propuesta** 📝
-   ```bash
-   # Ver ejemplo completo:
-   cat examples/submit-proposal.md
-   ```
-
-2. **Invitar Más Miembros** 👥
-   ```bash
-   # Mint más tokens de gobernanza
-   sui client call --package $PACKAGE_ID --module dao \
-     --function mint_governance_token \
-     --args $DAO_ID [new_member_address] [voting_power]
-   ```
-
-3. **Configurar Gobierno** ⚖️
-   ```bash
-   # Definir procesos de la comunidad
-   # - ¿Cuánto poder mínimo para proponer?
-   # - ¿Cuánto tiempo para votar?
-   # - ¿Qué tipos de propuestas permitir?
-   ```
-
----
-
-## 🔄 **Variaciones del Ejemplo**
-
-### **DAO Más Restrictiva**
-```bash
-# Solo miembros con alto poder pueden votar
-sui client call --package $PACKAGE_ID --module dao --function create_dao \
-  --args "Elite DAO" 1000 --gas-budget 30000000
-```
-
-### **DAO Más Abierta**
-```bash
-# Cualquiera con 1 token puede votar
-sui client call --package $PACKAGE_ID --module dao --function create_dao \
-  --args "Community DAO" 1 --gas-budget 30000000
-```
-
-### **DAO Especializada**
-```bash
-# DAO para propósito específico
-export SPECIALIZED_NAME="DevTools Funding DAO"
-sui client call --package $PACKAGE_ID --module dao --function create_dao \
-  --args "$SPECIALIZED_NAME" 100 --gas-budget 30000000
-```
-
----
-
-## 🐛 **Troubleshooting**
-
-### **Error: "Insufficient gas budget"**
-```bash
-# Problema: Gas insuficiente
-# Solución: Incrementar budget
---gas-budget 50000000  # En lugar de 30000000
-```
-
-### **Error: "Insufficient balance"**
-```bash
-# Problema: No tienes suficiente SUI
-# Solución para testnet: Usar faucet
-sui client faucet
-
-# Solución para mainnet: Conseguir más SUI
-```
-
-### **Error: "Package not found"**
-```bash
-# Problema: Package ID incorrecto
-# Solución: Verificar el PACKAGE_ID
-sui client object $PACKAGE_ID
-
-# O usar nuestro package official:
-export PACKAGE_ID="0x..."  # Package ID correcto
-```
-
-### **DAO No Aparece Como Shared**
-```bash
-# Verificar que fue creada como shared object
-sui client object $DAO_ID --json | jq '.owner'
-
-# Expected: {"Shared": {"initial_shared_version": 1}}
-```
-
----
-
-## 📚 **Comandos de Referencia Rápida**
-
-### **Setup**
-```bash
-export PACKAGE_ID="0x..."
-export DAO_NAME="Mi DAO"
-export MIN_VOTING_POWER=100
-```
-
-### **Crear DAO**
-```bash
-sui client call --package $PACKAGE_ID --module dao --function create_dao \
-  --args "$DAO_NAME" $MIN_VOTING_POWER --gas-budget 30000000
-```
-
-### **Financiar DAO**
-```bash
-sui client pay --input-amounts 1000000000 --recipients $(sui client active-address)
-sui client call --package $PACKAGE_ID --module dao --function fund_dao \
-  --args $DAO_ID $COIN_ID --gas-budget 20000000
-```
-
-### **Mint Tokens**
-```bash
-sui client call --package $PACKAGE_ID --module dao --function mint_governance_token \
-  --args $DAO_ID [address] [power] --gas-budget 20000000
-```
-
-### **Verificar**
-```bash
+# Solución: Verificar Object ID
 sui client object $DAO_ID
+# Si no existe, verificar el transaction digest de creación
 ```
 
----
-
-## 💡 **Tips Pro**
-
-### **🎯 Mejores Prácticas**
-
-1. **Planifica la Distribución de Poder**
-   - Evita que una persona tenga >51% del poder
-   - Distribuye según contribuciones o participación
-   - Considera crecimiento futuro de la comunidad
-
-2. **Documenta las Reglas**
-   ```markdown
-   # Reglas de Mi DAO
-   - Min voting power: 100 tokens
-   - Proposal threshold: 500 tokens
-   - Voting period: 7 days
-   - Quorum required: 30% participation
-   ```
-
-3. **Start Small, Scale Big**
-   - Comienza con treasury modesta
-   - Añade fondos según éxito de propuestas
-   - Incrementa miembros gradualmente
-
-4. **Backup Crucial Info**
-   ```bash
-   # Guardar IDs importantes
-   echo "DAO_ID=$DAO_ID" >> .env
-   echo "PACKAGE_ID=$PACKAGE_ID" >> .env
-   echo "CREATION_DATE=$(date)" >> .env
-   ```
-
-### **🔧 Automatización**
+### **❌ "Package not found"**
 ```bash
-#!/bin/bash
-# create-dao-script.sh
-set -e
+# Solución: Verificar Package ID
+echo $PACKAGE_ID
+# Si está incorrecto, obtener el correcto del deployment
+```
 
-DAO_NAME=$1
-MIN_POWER=$2
-FUNDING_AMOUNT=$3
-
-echo "🏛️ Creating DAO: $DAO_NAME"
-
-# Create DAO
-DAO_OUTPUT=$(sui client call --package $PACKAGE_ID --module dao --function create_dao \
-  --args "$DAO_NAME" $MIN_POWER --gas-budget 30000000)
-
-# Extract DAO ID
-DAO_ID=$(echo "$DAO_OUTPUT" | grep -o "0x[a-fA-F0-9]*" | head -1)
-echo "✅ DAO created: $DAO_ID"
-
-# Fund if amount provided
-if [ -n "$FUNDING_AMOUNT" ]; then
-    echo "💰 Funding DAO with $FUNDING_AMOUNT MIST"
-    # Add funding logic here
-fi
-
-echo "🎉 DAO setup completed!"
+### **❌ "Invalid address format"**
+```bash
+# Solución: Verificar formato de address
+echo $YOUR_ADDRESS
+# Debe empezar con 0x y tener 64 caracteres hexadecimales
 ```
 
 ---
 
-## 🎉 **¡Felicitaciones!**
+## 📚 **Recursos Adicionales**
 
-Has creado exitosamente tu primera DAO de financiamiento en Sui. Tu DAO ahora puede:
-
-- ✅ **Recibir propuestas** de la comunidad
-- ✅ **Votar democráticamente** en decisiones
-- ✅ **Distribuir fondos automáticamente** 
-- ✅ **Mantener transparencia total** en blockchain
-
-**¿Qué sigue?** 
-- 📝 [Crear tu primera propuesta](submit-proposal.md)
-- 🗳️ [Aprender a votar](voting-example.md)  
-- 🔄 [Ver el flujo completo](full-workflow.md)
+- **📖 Documentación del contrato**: [`../docs/esplicacion-dao.md`](../docs/esplicacion-dao.md)
+- **🧪 Ver tests como ejemplos**: [`../contracts/tests/dao_tests.move`](../contracts/tests/dao_tests.move)
+- **📋 Próximo tutorial**: [`submit-proposal.md`](submit-proposal.md)
+- **🏗️ Estructura del proyecto**: [`../docs/project-structure-updated.md`](../docs/project-structure-updated.md)
 
 ---
 
-**📝 Creado:** 5 de Septiembre 2024  
-**🧪 Testado en:** Sui Testnet  
-**⏱️ Tiempo promedio:** 12 minutos  
-**💰 Costo promedio:** 0.018 SUI
+**🎊 ¡Excelente trabajo! Has creado tu primera DAO en Sui Network. Ahora puedes crear propuestas y comenzar la gobernanza descentralizada.**

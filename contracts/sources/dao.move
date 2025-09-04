@@ -11,28 +11,23 @@
 /// - Validaciones de seguridad exhaustivas
 module dao_financing::dao {
     // === IMPORTS ===
-    use sui::object::{Self, UID, ID};
     use sui::balance::{Self, Balance};
     use sui::coin::{Self, Coin};
     use sui::sui::SUI;
-    use sui::transfer;
-    use sui::tx_context::{Self, TxContext};
     use sui::dynamic_object_field as ofield;
     use sui::event;
-    use std::string::{Self, String};
+    use std::string::String;
 
     // === ERROR CODES ===
     
     // Access control errors (100s)
     const E_ALREADY_VOTED: u64 = 100;
     const E_WRONG_DAO_TOKEN: u64 = 101;
-    const E_UNAUTHORIZED: u64 = 102;
     
     // State errors (200s)
     const E_PROPOSAL_NOT_ACTIVE: u64 = 200;
     const E_ALREADY_EXECUTED: u64 = 201;
     const E_DAO_NOT_ACTIVE: u64 = 202;
-    const E_PROPOSAL_EXPIRED: u64 = 203;
     
     // Business logic errors (300s)
     const E_INSUFFICIENT_FUNDS: u64 = 300;
@@ -44,14 +39,12 @@ module dao_financing::dao {
     
     // Proposal status constants
     const PROPOSAL_ACTIVE: u8 = 0;
-    const PROPOSAL_APPROVED: u8 = 1;
-    const PROPOSAL_REJECTED: u8 = 2;
     const PROPOSAL_EXECUTED: u8 = 3;
 
     // === STRUCTS ===
 
     /// Main DAO structure - shared object that represents the organization
-    struct DAO has key {
+    public struct DAO has key {
         id: UID,
         name: String,                   // Human readable name
         treasury: Balance<SUI>,         // Funds available for proposals
@@ -61,7 +54,7 @@ module dao_financing::dao {
     }
 
     /// Individual proposal for funding
-    struct Proposal has key {
+    public struct Proposal has key {
         id: UID,
         dao_id: ID,                     // Reference to parent DAO
         title: String,                  // Proposal title
@@ -76,14 +69,14 @@ module dao_financing::dao {
     }
 
     /// Governance token for voting rights
-    struct GovernanceToken has key, store {
+    public struct GovernanceToken has key, store {
         id: UID,
         dao_id: ID,                     // Which DAO this token is for
         voting_power: u64,              // Weight of this token's vote
     }
 
     /// Individual vote record (stored as dynamic field)
-    struct Vote has key, store {
+    public struct Vote has key, store {
         id: UID,
         support: bool,                  // true = in favor, false = against
         voting_power: u64,              // Power used for this vote
@@ -93,7 +86,7 @@ module dao_financing::dao {
     // === EVENTS ===
 
     /// Emitted when a new DAO is created
-    struct DAOCreated has copy, drop {
+    public struct DAOCreated has copy, drop {
         dao_id: ID,
         name: String,
         creator: address,
@@ -101,7 +94,7 @@ module dao_financing::dao {
     }
 
     /// Emitted when a proposal is created
-    struct ProposalCreated has copy, drop {
+    public struct ProposalCreated has copy, drop {
         proposal_id: ID,
         dao_id: ID,
         title: String,
@@ -110,7 +103,7 @@ module dao_financing::dao {
     }
 
     /// Emitted when a vote is cast
-    struct VoteCast has copy, drop {
+    public struct VoteCast has copy, drop {
         proposal_id: ID,
         voter: address,
         support: bool,
@@ -118,7 +111,7 @@ module dao_financing::dao {
     }
 
     /// Emitted when a proposal is executed
-    struct ProposalExecuted has copy, drop {
+    public struct ProposalExecuted has copy, drop {
         proposal_id: ID,
         dao_id: ID,
         amount: u64,
@@ -135,7 +128,7 @@ module dao_financing::dao {
     /// * `name` - Human readable name for the DAO
     /// * `min_voting_power` - Minimum voting power required to participate
     /// * `ctx` - Transaction context
-    public entry fun create_dao(
+    public fun create_dao(
         name: String,
         min_voting_power: u64,
         ctx: &mut TxContext
@@ -173,7 +166,7 @@ module dao_financing::dao {
     /// * `description` - Detailed description
     /// * `amount` - Amount requested in MIST (1 SUI = 1,000,000,000 MIST)
     /// * `ctx` - Transaction context
-    public entry fun create_proposal(
+    public fun create_proposal(
         dao: &mut DAO,
         title: String,
         description: String,
@@ -225,7 +218,7 @@ module dao_financing::dao {
     /// * `token` - Governance token to vote with
     /// * `support` - true for yes, false for no
     /// * `ctx` - Transaction context
-    public entry fun cast_vote(
+    public fun cast_vote(
         proposal: &mut Proposal,
         token: &GovernanceToken,
         support: bool,
@@ -284,7 +277,7 @@ module dao_financing::dao {
     /// * `dao` - Mutable reference to the DAO
     /// * `proposal` - Mutable reference to the proposal
     /// * `ctx` - Transaction context
-    public entry fun execute_proposal(
+    public fun execute_proposal(
         dao: &mut DAO,
         proposal: &mut Proposal,
         ctx: &mut TxContext
@@ -342,7 +335,7 @@ module dao_financing::dao {
     /// * `to` - Address to send the token to
     /// * `voting_power` - Voting power of the token
     /// * `ctx` - Transaction context
-    public entry fun mint_governance_token(
+    public fun mint_governance_token(
         dao: &DAO,
         to: address,
         voting_power: u64,
@@ -366,7 +359,7 @@ module dao_financing::dao {
     /// # Arguments
     /// * `dao` - Mutable reference to the DAO
     /// * `payment` - SUI coin to add to treasury
-    public entry fun fund_dao(dao: &mut DAO, payment: Coin<SUI>) {
+    public fun fund_dao(dao: &mut DAO, payment: Coin<SUI>) {
         let balance_to_add = coin::into_balance(payment);
         balance::join(&mut dao.treasury, balance_to_add);
     }
@@ -472,7 +465,7 @@ module dao_financing::dao {
     /// # Arguments
     /// * `dao` - Mutable reference to the DAO
     /// * `active` - New active state
-    public entry fun set_dao_active(dao: &mut DAO, active: bool) {
+    public fun set_dao_active(dao: &mut DAO, active: bool) {
         dao.active = active;
     }
 

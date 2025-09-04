@@ -1,22 +1,24 @@
 ```bash
 sui-dao-financing/
 ├── README.md                          # Descripción principal del proyecto
-├── LICENSE                            # Licencia del proyecto
+├── LICENSE.md                            # Licencia del proyecto
 ├── .gitignore                        # Archivos a ignorar
 │
 ├── 📚 docs/                          # Documentación del proyecto
+│   ├── api-reference.md              # Referencia de funciones
 │   ├── README.md                     # Índice de documentación
-│   ├── project-overview.md           # Resumen del proyecto
-│   ├── technical-specs.md            # Especificaciones técnicas
 │   ├── deployment-guide.md           # Guía de despliegue
-│   └── api-reference.md              # Referencia de funciones
+│   ├── project-overview.md           # Resumen del proyecto
+│   ├── project-structure.md         # Estructura del proyecto
+│   └── technical-specs.md            # Especificaciones técnicas
 │
 ├── 📖 learning-notes/                # Notas del proceso de aprendizaje
 │   ├── README.md                     # Índice de notas
 │   ├── 01-move-concepts.md           # Conceptos básicos de Move
 │   ├── 02-sui-objects.md             # Objetos en Sui
 │   ├── 03-dao-architecture.md        # Arquitectura de la DAO
-│   ├── 04-implementation-log.md      # Log del proceso de desarrollo
+│   ├── 04-structures-functions.md    # Structuras y Funciones Avanzadas
+│   ├── 05-implementation-log.md      # Log del proceso de desarrollo
 │   └── resources.md                  # Enlaces y recursos útiles
 │
 ├── 🔧 contracts/                     # Código Move del smart contract
@@ -27,9 +29,11 @@ sui-dao-financing/
 │   │   ├── governance.move           # Tokens de gobernanza
 │   │   └── voting.move               # Sistema de votación
 │   └── tests/                        # Tests del contrato
-│       ├── dao_tests.move
-│       ├── proposal_tests.move
-│       └── integration_tests.move
+│       ├── dao_tests.move            # Tests del módulo principal (18 tests)
+│       ├── proposal_tests.move       # Tests de propuestas (3 tests)
+│       ├── governance_tests.move     # Tests de gobernanza (6 tests)
+│       ├── voting_tests.move         # Tests de votación (4 tests)
+│       └── integration_tests.move    # Tests de integración (3 tests)
 │
 ├── 📋 examples/                      # Ejemplos de uso
 │   ├── create-dao.md                 # Cómo crear una DAO

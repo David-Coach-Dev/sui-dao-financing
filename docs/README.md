@@ -14,7 +14,7 @@ Esta carpeta contiene toda la documentación técnica del proyecto DAO de Financ
 | [**Technical Specs**](technical-specs.md) | Especificaciones técnicas detalladas | Desarrolladores |
 | [**API Reference**](api-reference.md) | Referencia completa de funciones | Desarrolladores |
 | [**Deployment Guide**](deployment-guide.md) | Guía paso a paso para despliegue | DevOps |
-| [**User Guide**](user-guide.md) | Manual de usuario para interactuar con la DAO | Usuarios finales |
+| [**Sui Commands**](sui-commands.md) | Comandos y configuraciones de Sui | Desarrolladores |
 
 ---
 
