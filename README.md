@@ -19,6 +19,9 @@ Una **organización autónoma descentralizada (DAO)** completamente funcional qu
 - ⚡ **Ejecutar propuestas** aprobadas automáticamente
 - 🔍 **Auditar procesos** con transparencia total
 
+### 🎯 **¿Primera vez viendo este proyecto?**
+**👉 Lee la [Explicación Completa del Proyecto](docs/explicacion-proyecto.md)** - Guía detallada de qué hace, cómo funciona y por qué es útil.
+
 ---
 
 ## ✨ **Características Principales**
