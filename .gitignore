@@ -152,10 +152,12 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-# siu
+# Sui Move specific
 **/build
 **/Move.lock
 
-# folder
-
+# Backup folder
 .backup
+
+# Important: Keep AI_CONTEXT.md tracked for model context
+# Do not ignore AI_CONTEXT.md - it's essential for AI assistance

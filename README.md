@@ -22,6 +22,9 @@ Una **organización autónoma descentralizada (DAO)** completamente funcional qu
 ### 🎯 **¿Primera vez viendo este proyecto?**
 **👉 Lee la [Explicación Completa del Proyecto](docs/explicacion-proyecto.md)** - Guía detallada de qué hace, cómo funciona y por qué es útil.
 
+### 🤖 **Para Modelos de IA**
+**👉 Consulta [AI_CONTEXT.md](AI_CONTEXT.md)** - Contexto completo y actualizado del proyecto para asistencia de IA.
+
 ---
 
 ## ✨ **Características Principales**
