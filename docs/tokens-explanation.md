@@ -476,11 +476,11 @@ Resultado: Máxima democracia y participación
 
 ## 📚 **Recursos Relacionados**
 
-- **🏛️ DAO Principal**: [`esplicacion-dao.md`](esplicacion-dao.md)
-- **📝 Propuestas**: [`esplicacion-propuesta.md`](esplicacion-propuesta.md)
-- **🗳️ Votación**: [`esplicacion-votacion.md`](esplicacion-votacion.md)
-- **⚡ Ejecución**: [`esplicacion-ejecucion.md`](esplicacion-ejecucion.md)
-- **🧪 Tests**: [`esplicacion-tests.md`](esplicacion-tests.md)
+- **🏛️ DAO Principal**: [`dao-explanation.md`](dao-explanation.md)
+- **📝 Propuestas**: [`proposal-explanation.md`](proposal-explanation.md)
+- **🗳️ Votación**: [`voting-explanation.md`](voting-explanation.md)
+- **⚡ Ejecución**: [`execution-explanation.md`](execution-explanation.md)
+- **🧪 Tests**: [`tests-explanation.md`](tests-explanation.md)
 
 ---
 

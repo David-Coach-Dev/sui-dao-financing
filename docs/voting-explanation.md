@@ -447,11 +447,11 @@ Estado: Necesita más participación
 
 ## 📚 **Recursos Relacionados**
 
-- **🏛️ DAO Principal**: [`esplicacion-dao.md`](esplicacion-dao.md)
-- **📝 Propuestas**: [`esplicacion-propuesta.md`](esplicacion-propuesta.md)
-- **⚡ Ejecución**: [`esplicacion-ejecucion.md`](esplicacion-ejecucion.md)
-- **🎫 Tokens**: [`esplicacion-tokens.md`](esplicacion-tokens.md)
-- **🧪 Tests**: [`esplicacion-tests.md`](esplicacion-tests.md)
+- **🏛️ DAO Principal**: [`dao-explanation.md`](dao-explanation.md)
+- **📝 Propuestas**: [`proposal-explanation.md`](proposal-explanation.md)
+- **⚡ Ejecución**: [`execution-explanation.md`](execution-explanation.md)
+- **🎫 Tokens**: [`tokens-explanation.md`](tokens-explanation.md)
+- **🧪 Tests**: [`tests-explanation.md`](tests-explanation.md)
 
 ---
 

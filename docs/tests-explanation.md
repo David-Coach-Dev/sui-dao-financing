@@ -636,11 +636,11 @@ Test result: OK. Total tests: 18; passed: 18; failed: 0
 
 ## 📚 **Recursos Relacionados**
 
-- **🏛️ DAO Principal**: [`esplicacion-dao.md`](esplicacion-dao.md)
-- **📝 Propuestas**: [`esplicacion-propuesta.md`](esplicacion-propuesta.md)
-- **🗳️ Votación**: [`esplicacion-votacion.md`](esplicacion-votacion.md)
-- **⚡ Ejecución**: [`esplicacion-ejecucion.md`](esplicacion-ejecucion.md)
-- **🎫 Tokens**: [`esplicacion-tokens.md`](esplicacion-tokens.md)
+- **🏛️ DAO Principal**: [`dao-explanation.md`](dao-explanation.md)
+- **📝 Propuestas**: [`proposal-explanation.md`](proposal-explanation.md)
+- **🗳️ Votación**: [`voting-explanation.md`](voting-explanation.md)
+- **⚡ Ejecución**: [`execution-explanation.md`](execution-explanation.md)
+- **🎫 Tokens**: [`tokens-explanation.md`](tokens-explanation.md)
 
 ---
 

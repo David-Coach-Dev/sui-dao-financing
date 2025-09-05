@@ -497,11 +497,11 @@ done
 
 ## 📚 **Recursos Relacionados**
 
-- **🏛️ DAO Principal**: [`esplicacion-dao.md`](esplicacion-dao.md)
-- **📝 Propuestas**: [`esplicacion-propuesta.md`](esplicacion-propuesta.md)
-- **🗳️ Votación**: [`esplicacion-votacion.md`](esplicacion-votacion.md)
-- **🎫 Tokens**: [`esplicacion-tokens.md`](esplicacion-tokens.md)
-- **🧪 Tests**: [`esplicacion-tests.md`](esplicacion-tests.md)
+- **🏛️ DAO Principal**: [`dao-explanation.md`](dao-explanation.md)
+- **📝 Propuestas**: [`proposal-explanation.md`](proposal-explanation.md)
+- **🗳️ Votación**: [`voting-explanation.md`](voting-explanation.md)
+- **🎫 Tokens**: [`tokens-explanation.md`](tokens-explanation.md)
+- **🧪 Tests**: [`tests-explanation.md`](tests-explanation.md)
 
 ---
 

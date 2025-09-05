@@ -10,6 +10,10 @@ lerna-debug.log*
 contracts/build/
 contracts/*.lock
 contracts/Move.lock
+contracts/.trace
+contracts/.coverage_map.mvcov
+**/.trace
+**/.coverage_map.mvcov
 
 # Backup and temporary files
 .backup/

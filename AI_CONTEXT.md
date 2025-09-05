@@ -113,14 +113,14 @@ sui-dao-financing/
 ## 📚 Key Documentation Files
 
 ### Spanish Explanations (docs/)
-- `explicacion-proyecto.md` - Complete project overview
-- `esplicacion-dao.md` - DAO creation and management
-- `esplicacion-propuesta.md` - Proposal system
-- `esplicacion-votacion.md` - Voting mechanisms
-- `esplicacion-tokens.md` - Governance tokens
-- `esplicacion-ejecucion.md` - Proposal execution
-- `esplicacion-tests.md` - Testing guide
-- `esplicacion-move-toml.md` - Configuration guide
+- `project-explanation.md` - Complete project overview
+- `dao-explanation.md` - DAO creation and management
+- `proposal-explanation.md` - Proposal system
+- `voting-explanation.md` - Voting mechanisms
+- `tokens-explanation.md` - Governance tokens
+- `execution-explanation.md` - Proposal execution
+- `tests-explanation.md` - Testing guide
+- `move-toml-explanation.md` - Configuration guide
 
 ### Technical References
 - `api-reference.md` - Complete API documentation

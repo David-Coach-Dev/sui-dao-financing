@@ -5,7 +5,7 @@
 ## 🌟 **¡EMPIEZA AQUÍ!**
 
 ### 🎯 **¿Primera vez viendo este proyecto?**
-**Lee primero:** [**🎯 Explicación Completa del Proyecto**](explicacion-proyecto.md)
+**Lee primero:** [**🎯 Explicación Completa del Proyecto**](project-explanation.md)
 
 Este documento te explica de forma clara y detallada:
 - ✨ **¿Qué hace este proyecto?** - Explicación en español sencillo
@@ -24,7 +24,7 @@ Esta carpeta contiene toda la documentación técnica del proyecto DAO de Financ
 
 | Documento | Descripción | Audiencia |
 |-----------|-------------|-----------|
-| [**🎯 Explicación del Proyecto**](explicacion-proyecto.md) | **¿Qué hace este proyecto? Explicación completa** | **Todos** |
+| [**🎯 Explicación del Proyecto**](project-explanation.md) | **¿Qué hace este proyecto? Explicación completa** | **Todos** |
 | [**Project Overview**](project-overview.md) | Resumen ejecutivo del proyecto | General |
 | [**Technical Specs**](technical-specs.md) | Especificaciones técnicas detalladas | Desarrolladores |
 | [**API Reference**](api-reference.md) | Referencia completa de funciones | Desarrolladores |
@@ -36,19 +36,19 @@ Esta carpeta contiene toda la documentación técnica del proyecto DAO de Financ
 ## 🎯 **Navegación Rápida**
 
 ### 👤 **Para Usuarios Finales**
-- **🎯 ¿Qué hace este proyecto?** → [**Explicación del Proyecto**](explicacion-proyecto.md) ⭐
+- **🎯 ¿Qué hace este proyecto?** → [**Explicación del Proyecto**](project-explanation.md) ⭐
 - **¿Qué es esta DAO?** → [Project Overview](project-overview.md)
 - **¿Cómo la uso?** → [User Guide](user-guide.md)
 - **¿Qué funciones tiene?** → [API Reference](api-reference.md)
 
 ### 👨‍💻 **Para Desarrolladores**
-- **🎯 Entender el proyecto** → [**Explicación del Proyecto**](explicacion-proyecto.md) ⭐
+- **🎯 Entender el proyecto** → [**Explicación del Proyecto**](project-explanation.md) ⭐
 - **Arquitectura técnica** → [Technical Specs](technical-specs.md)
 - **Referencia de API** → [API Reference](api-reference.md)
 - **Cómo desplegar** → [Deployment Guide](deployment-guide.md)
 
 ### 🏢 **Para Evaluadores**
-- **🎯 ¿Qué resuelve este proyecto?** → [**Explicación del Proyecto**](explicacion-proyecto.md) ⭐
+- **🎯 ¿Qué resuelve este proyecto?** → [**Explicación del Proyecto**](project-explanation.md) ⭐
 - **Resumen del proyecto** → [Project Overview](project-overview.md)
 - **Cumplimiento de requisitos** → [Technical Specs](technical-specs.md)
 - **Evidencia de despliegue** → [Deployment Guide](deployment-guide.md)
