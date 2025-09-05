@@ -784,4 +784,204 @@ module dao_financing::dao_tests {
         test_scenario::return_shared(dao);
         test_scenario::end(scenario_val);
     }
+
+    // === TESTS FOR NEW v3 FUNCTIONS ===
+
+    #[test]
+    fun test_get_dao_stats() {
+        let mut scenario = test_scenario::begin(ADMIN);
+        
+        // Create DAO
+        {
+            let ctx = test_scenario::ctx(&mut scenario);
+            dao::create_dao(string::utf8(b"Test DAO"), 100, ctx);
+        };
+        test_scenario::next_tx(&mut scenario, ADMIN);
+
+        // Get the DAO and test initial stats
+        {
+            let mut dao = test_scenario::take_shared<DAO>(&scenario);
+            let (treasury, proposals, active, min_voting) = dao::get_dao_stats(&dao);
+            assert!(treasury == 0, 0);
+            assert!(proposals == 0, 1);
+            assert!(active == true, 2);
+            assert!(min_voting == 100, 3);
+
+            // Add some treasury
+            let ctx = test_scenario::ctx(&mut scenario);
+            let payment = coin::mint_for_testing<SUI>(1000, ctx);
+            dao::fund_dao(&mut dao, payment);
+
+            // Create a proposal to increment count
+            dao::create_proposal(
+                &mut dao,
+                string::utf8(b"Test Proposal"),
+                string::utf8(b"Test Description"),
+                500,
+                ctx
+            );
+
+            // Test updated stats
+            let (treasury2, proposals2, active2, min_voting2) = dao::get_dao_stats(&dao);
+            assert!(treasury2 == 1000, 4);
+            assert!(proposals2 == 1, 5);
+            assert!(active2 == true, 6);
+            assert!(min_voting2 == 100, 7);
+
+            test_scenario::return_shared(dao);
+        };
+        test_scenario::end(scenario);
+    }
+
+    #[test]
+    fun test_get_treasury_balance() {
+        let mut scenario = test_scenario::begin(ADMIN);
+        
+        // Create DAO
+        {
+            let ctx = test_scenario::ctx(&mut scenario);
+            dao::create_dao(string::utf8(b"Test DAO"), 100, ctx);
+        };
+        test_scenario::next_tx(&mut scenario, ADMIN);
+
+        {
+            let mut dao = test_scenario::take_shared<DAO>(&scenario);
+            
+            // Test initial balance
+            assert!(dao::get_treasury_balance(&dao) == 0, 0);
+
+            // Add funds
+            let ctx = test_scenario::ctx(&mut scenario);
+            let payment = coin::mint_for_testing<SUI>(2500, ctx);
+            dao::fund_dao(&mut dao, payment);
+
+            // Test updated balance
+            assert!(dao::get_treasury_balance(&dao) == 2500, 1);
+
+            test_scenario::return_shared(dao);
+        };
+        test_scenario::end(scenario);
+    }
+
+    #[test]
+    fun test_has_sufficient_funds() {
+        let mut scenario = test_scenario::begin(ADMIN);
+        
+        // Create DAO
+        {
+            let ctx = test_scenario::ctx(&mut scenario);
+            dao::create_dao(string::utf8(b"Test DAO"), 100, ctx);
+        };
+        test_scenario::next_tx(&mut scenario, ADMIN);
+
+        {
+            let mut dao = test_scenario::take_shared<DAO>(&scenario);
+            
+            // Test with empty treasury
+            assert!(dao::has_sufficient_funds(&dao, 100) == false, 0);
+            assert!(dao::has_sufficient_funds(&dao, 0) == true, 1);
+
+            // Add funds
+            let ctx = test_scenario::ctx(&mut scenario);
+            let payment = coin::mint_for_testing<SUI>(1000, ctx);
+            dao::fund_dao(&mut dao, payment);
+
+            // Test with funded treasury
+            assert!(dao::has_sufficient_funds(&dao, 500) == true, 2);
+            assert!(dao::has_sufficient_funds(&dao, 1000) == true, 3);
+            assert!(dao::has_sufficient_funds(&dao, 1001) == false, 4);
+            assert!(dao::has_sufficient_funds(&dao, 2000) == false, 5);
+
+            test_scenario::return_shared(dao);
+        };
+        test_scenario::end(scenario);
+    }
+
+    #[test]
+    fun test_new_functions_integration() {
+        let mut scenario = test_scenario::begin(ADMIN);
+        
+        // Create DAO
+        {
+            let ctx = test_scenario::ctx(&mut scenario);
+            dao::create_dao(string::utf8(b"Integration Test DAO"), 500, ctx);
+        };
+        test_scenario::next_tx(&mut scenario, ADMIN);
+
+        {
+            let mut dao = test_scenario::take_shared<DAO>(&scenario);
+            
+            // Test initial state with all new functions
+            let (treasury, proposals, active, min_voting) = dao::get_dao_stats(&dao);
+            assert!(treasury == dao::get_treasury_balance(&dao), 0);
+            assert!(dao::has_sufficient_funds(&dao, treasury), 1);
+            assert!(proposals == 0, 2);
+            assert!(active == true, 3);
+            assert!(min_voting == 500, 4);
+
+            // Fund DAO and create proposal
+            let ctx = test_scenario::ctx(&mut scenario);
+            let payment = coin::mint_for_testing<SUI>(10000, ctx);
+            dao::fund_dao(&mut dao, payment);
+            
+            dao::create_proposal(
+                &mut dao,
+                string::utf8(b"Integration Proposal"),
+                string::utf8(b"Testing all new functions together"),
+                5000,
+                ctx
+            );
+
+            // Test final state
+            let (treasury_final, proposals_final, _, _) = dao::get_dao_stats(&dao);
+            assert!(treasury_final == 10000, 5);
+            assert!(treasury_final == dao::get_treasury_balance(&dao), 6);
+            assert!(proposals_final == 1, 7);
+            assert!(dao::has_sufficient_funds(&dao, 5000), 8);
+            assert!(dao::has_sufficient_funds(&dao, 15000) == false, 9);
+
+            test_scenario::return_shared(dao);
+        };
+        test_scenario::end(scenario);
+    }
+
+    #[test]
+    fun test_treasury_operations_comprehensive() {
+        let mut scenario = test_scenario::begin(ADMIN);
+        
+        // Create DAO
+        {
+            let ctx = test_scenario::ctx(&mut scenario);
+            dao::create_dao(string::utf8(b"Treasury Test DAO"), 1000, ctx);
+        };
+        test_scenario::next_tx(&mut scenario, ADMIN);
+
+        {
+            let mut dao = test_scenario::take_shared<DAO>(&scenario);
+            
+            // Test multiple funding operations
+            let ctx = test_scenario::ctx(&mut scenario);
+            let payment1 = coin::mint_for_testing<SUI>(1000, ctx);
+            dao::fund_dao(&mut dao, payment1);
+            assert!(dao::get_treasury_balance(&dao) == 1000, 0);
+            assert!(dao::has_sufficient_funds(&dao, 1000), 1);
+
+            let payment2 = coin::mint_for_testing<SUI>(500, ctx);
+            dao::fund_dao(&mut dao, payment2);
+            assert!(dao::get_treasury_balance(&dao) == 1500, 2);
+            assert!(dao::has_sufficient_funds(&dao, 1500), 3);
+
+            // Test edge cases
+            assert!(dao::has_sufficient_funds(&dao, 1501) == false, 4);
+            assert!(dao::has_sufficient_funds(&dao, 0), 5);
+
+            // Verify stats consistency
+            let (treasury, _, _, _) = dao::get_dao_stats(&dao);
+            assert!(treasury == dao::get_treasury_balance(&dao), 6);
+            assert!(treasury == 1500, 7);
+
+            test_scenario::return_shared(dao);
+        };
+        test_scenario::end(scenario);
+    }
 }

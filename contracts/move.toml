@@ -2,6 +2,7 @@
 name = "dao_financing"
 version = "1.0.0"
 edition = "2024.beta"
+published-at = "0x507f1136b933df439ed4a4f87b741d2e8b5ae9f4f2af4fc507ffb1f6d44cbd37"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/mainnet" }

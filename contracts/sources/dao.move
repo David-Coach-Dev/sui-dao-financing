@@ -218,7 +218,8 @@ module dao_financing::dao {
     /// * `token` - Governance token to vote with
     /// * `support` - true for yes, false for no
     /// * `ctx` - Transaction context
-    public fun cast_vote(
+    #[allow(lint(public_entry))]
+    public entry fun cast_vote(
         proposal: &mut Proposal,
         token: &GovernanceToken,
         support: bool,
@@ -365,6 +366,45 @@ module dao_financing::dao {
     }
 
     // === PUBLIC VIEW FUNCTIONS ===
+
+    /// Get comprehensive DAO statistics
+    /// 
+    /// # Arguments
+    /// * `dao` - Reference to the DAO
+    /// 
+    /// # Returns
+    /// * Tuple of (treasury_balance, proposal_count, active_status, min_voting_power)
+    public fun get_dao_stats(dao: &DAO): (u64, u64, bool, u64) {
+        (
+            balance::value(&dao.treasury),
+            dao.proposal_count,
+            dao.active,
+            dao.min_voting_power
+        )
+    }
+
+    /// Get DAO treasury balance in a user-friendly format
+    /// 
+    /// # Arguments
+    /// * `dao` - Reference to the DAO
+    /// 
+    /// # Returns
+    /// * Treasury balance in MIST
+    public fun get_treasury_balance(dao: &DAO): u64 {
+        balance::value(&dao.treasury)
+    }
+
+    /// Check if DAO has sufficient funds for a given amount
+    /// 
+    /// # Arguments
+    /// * `dao` - Reference to the DAO
+    /// * `amount` - Amount to check in MIST
+    /// 
+    /// # Returns
+    /// * True if DAO has sufficient funds
+    public fun has_sufficient_funds(dao: &DAO, amount: u64): bool {
+        balance::value(&dao.treasury) >= amount
+    }
 
     /// Get the current vote counts for a proposal
     /// 

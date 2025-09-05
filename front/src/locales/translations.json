@@ -1,0 +1,188 @@
+{
+  "es": {
+    "dashboard": {
+      "title": "Sui DAO",
+      "subtitle": "Plataforma de financiamiento descentralizado",
+      "search": "Buscar propuestas...",
+      "connect": "Conectar",
+      "connecting": "Conectando...",
+      "disconnect": "Desconectar",
+      "notifications": "Notificaciones",
+      "profile": "Perfil",
+      "balance": "Balance",
+      "settings": "Configuración",
+      "myWallet": "Mi Wallet"
+    },
+    "navigation": {
+      "dashboard": "Dashboard",
+      "proposals": "Propuestas",
+      "voting": "Votaciones",
+      "members": "Miembros",
+      "treasury": "Tesorería",
+      "analytics": "Estadísticas",
+      "history": "Historial",
+      "createProposal": "Crear Propuesta",
+      "profile": "Mi Perfil",
+      "main": "Principal",
+      "actions": "Acciones",
+      "activity": "Actividad",
+      "activeProposals": "propuestas activas",
+      "participatingMembers": "miembros participando"
+    },
+    "proposals": {
+      "title": "Propuestas",
+      "new": "Nueva Propuesta",
+      "management": "Gestión de Propuestas",
+      "description": "Administra y vota en las propuestas del DAO",
+      "noProposals": "No hay propuestas activas",
+      "noProposalsDesc": "Sé el primero en crear una propuesta para la comunidad",
+      "vote": "Votar",
+      "voted": "Votado",
+      "status": {
+        "active": "Activa",
+        "passed": "Aprobada",
+        "rejected": "Rechazada",
+        "pending": "Pendiente"
+      }
+    },
+    "voting": {
+      "title": "Votaciones",
+      "system": "Sistema de Votación",
+      "description": "Participa en las votaciones activas del DAO",
+      "content": "Aquí se mostrarían las votaciones activas y tu poder de voto."
+    },
+    "members": {
+      "title": "Miembros",
+      "community": "Comunidad del DAO",
+      "description": "Miembros activos y su participación en la gobernanza",
+      "content": "Lista de todos los miembros del DAO y sus estadísticas de participación."
+    },
+    "treasury": {
+      "title": "Tesorería",
+      "funds": "Fondos del DAO",
+      "description": "Gestión y seguimiento de los fondos del DAO",
+      "content": "Información detallada sobre el treasury y transacciones."
+    },
+    "analytics": {
+      "title": "Estadísticas",
+      "analysis": "Análisis del DAO",
+      "description": "Métricas y estadísticas detalladas de la actividad",
+      "content": "Gráficos y análisis de la participación, votaciones y actividad del DAO."
+    },
+    "settings": {
+      "title": "Configuración",
+      "daoSettings": "Ajustes del DAO",
+      "description": "Configuraciones generales y preferencias",
+      "content": "Configuraciones del DAO y preferencias personales.",
+      "language": "Idioma",
+      "theme": "Tema",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema"
+    },
+    "common": {
+      "loading": "Cargando...",
+      "error": "Error",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "close": "Cerrar",
+      "yes": "Sí",
+      "no": "No",
+      "confirm": "Confirmar",
+      "delete": "Eliminar"
+    }
+  },
+  "en": {
+    "dashboard": {
+      "title": "Sui DAO",
+      "subtitle": "Decentralized financing platform",
+      "search": "Search proposals...",
+      "connect": "Connect",
+      "connecting": "Connecting...",
+      "disconnect": "Disconnect",
+      "notifications": "Notifications",
+      "profile": "Profile",
+      "balance": "Balance",
+      "settings": "Settings",
+      "myWallet": "My Wallet"
+    },
+    "navigation": {
+      "dashboard": "Dashboard",
+      "proposals": "Proposals",
+      "voting": "Voting",
+      "members": "Members",
+      "treasury": "Treasury",
+      "analytics": "Analytics",
+      "history": "History",
+      "createProposal": "Create Proposal",
+      "profile": "My Profile",
+      "main": "Main",
+      "actions": "Actions",
+      "activity": "Activity",
+      "activeProposals": "active proposals",
+      "participatingMembers": "participating members"
+    },
+    "proposals": {
+      "title": "Proposals",
+      "new": "New Proposal",
+      "management": "Proposal Management",
+      "description": "Manage and vote on DAO proposals",
+      "noProposals": "No active proposals",
+      "noProposalsDesc": "Be the first to create a proposal for the community",
+      "vote": "Vote",
+      "voted": "Voted",
+      "status": {
+        "active": "Active",
+        "passed": "Passed",
+        "rejected": "Rejected",
+        "pending": "Pending"
+      }
+    },
+    "voting": {
+      "title": "Voting",
+      "system": "Voting System",
+      "description": "Participate in active DAO votes",
+      "content": "Here you would see active votes and your voting power."
+    },
+    "members": {
+      "title": "Members",
+      "community": "DAO Community",
+      "description": "Active members and their governance participation",
+      "content": "List of all DAO members and their participation statistics."
+    },
+    "treasury": {
+      "title": "Treasury",
+      "funds": "DAO Funds",
+      "description": "Management and tracking of DAO funds",
+      "content": "Detailed information about treasury and transactions."
+    },
+    "analytics": {
+      "title": "Analytics",
+      "analysis": "DAO Analysis",
+      "description": "Detailed metrics and activity statistics",
+      "content": "Charts and analysis of participation, voting, and DAO activity."
+    },
+    "settings": {
+      "title": "Settings",
+      "daoSettings": "DAO Settings",
+      "description": "General settings and preferences",
+      "content": "DAO settings and personal preferences.",
+      "language": "Language",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "common": {
+      "loading": "Loading...",
+      "error": "Error",
+      "save": "Save",
+      "cancel": "Cancel",
+      "close": "Close",
+      "yes": "Yes",
+      "no": "No",
+      "confirm": "Confirm",
+      "delete": "Delete"
+    }
+  }
+}
