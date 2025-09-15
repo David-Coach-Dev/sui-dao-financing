@@ -16,7 +16,7 @@ Fundamentos de Move    ## 💡 Reflexiones
 - La documentación completa es una inversión que vale la pena
 
 ---
-
+```
 **📝 Última actualización:** 8 de Septiembre 2024  
 **👨‍💻 Por:** David Coach Dev  
 **📧 Dudas:** Discord Sui Latam Devs  
