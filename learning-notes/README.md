@@ -2,7 +2,6 @@
 
 > **Documentación completa del proceso de aprendizaje de Move## 📊 Progreso General
 
-```
 Fundamentos de Move    ## 💡 Reflexiones
 
 **Días 1-3:** Los conceptos iniciales de Move son similares a Rust, pero el sistema de objetos de Sui es único y poderoso...
@@ -16,17 +15,19 @@ Fundamentos de Move    ## 💡 Reflexiones
 - La documentación completa es una inversión que vale la pena
 
 ---
-```
+
 **📝 Última actualización:** 8 de Septiembre 2024  
 **👨‍💻 Por:** David Coach Dev  
 **📧 Dudas:** Discord Sui Latam Devs  
 **🎯 Estado:** Production-ready DAO system con 34/34 tests passing████] 100%
+
+```
 Arquitectura DAO       [██████████] 100%  
 Implementación         [██████████] 100%
 Testing               [██████████] 100%
 Documentación         [█████████░] 90%
 Deploy Production     [██░░░░░░░░] 20%
-```rollo en Sui**
+```
 
 ## 🎯 Objetivo
 
